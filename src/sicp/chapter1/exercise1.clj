@@ -26,8 +26,7 @@
                 (= b 4) (+ 6 7 a)
                 :else 25))
 
-(def exp10 (+ 2 (if (> b a) b a))
-)
+(def exp10 (+ 2 (if (> b a) b a)))
 
 (def exp11 (* (cond (> a b) a
                     (< a b) b
