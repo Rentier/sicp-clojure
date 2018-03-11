@@ -3,7 +3,7 @@
 (defn average [x y]
   (/ (+ x y) 2))
 
-(defn abs [x] (if x < 0) (- x) x)
+(defn abs [x] (if (< x 0.) (- x) x))
 
 (defn improve [guess x]
   (average guess (/ x guess)))
@@ -22,15 +22,13 @@
 
   ; Iterative sqrt using relative difference
 
-(defn relative-difference [x y]
-  (/ (abs (- x y))
-     (max (abs x) (abs y))))
+(defn good-enough-rel? [guess x]
+  (< (abs (/ (- x (square guess)) x)) 0.0000001))
 
-(defn sqrt-iter-rel [last-guess current-guess x]
-  ((print last-guess current-guess x)
-   (if (< (relative-difference last-guess current-guess) 0.0001) current-guess
-       (sqrt-iter (improve current-guess x) x))))
+(defn sqrt-iter-rel [guess x]
+  (if (good-enough-rel? guess x) guess
+      (sqrt-iter-rel (improve guess x) x)))
 
 (defn sqrt-rel [x]
-  (sqrt-iter-rel x 1.0 x))
+  (sqrt-iter-rel 1.0 x))
 
