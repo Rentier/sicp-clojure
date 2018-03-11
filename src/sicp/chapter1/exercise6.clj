@@ -1,4 +1,4 @@
-(ns sicp.chapter1.exercise5)
+(ns sicp.chapter1.exercise6)
 
 (def (new-if predicate then-clause else-clause)
   (cond predicate then-clause
